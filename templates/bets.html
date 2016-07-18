@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block title %}Bets{% endblock %}
+{% block content %}
+    {% for bet in bets %}
+    <h2>${{bet.price}} People in bet: {{bet.title}}</h2>
+        {% for user in bet.people.all %}
+            <p>{{user.username}}</p>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
