@@ -8,10 +8,10 @@
             {% if user and not user.is_anonymous %}
             <div class="card">
                 <div class="row">
-                    <div class="col-md-2 ">
+                    <div class="col-md-3 col-lg-4">
                         <img class="card-img-top profile-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Card image cap">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9 col-lg-8">
                         <div class="card-block">
                             <h3 class="card-title">Hello {{user.get_full_name|default:user.username}}!</h3>
 
@@ -23,7 +23,7 @@
                 <h4 style="padding:10px;"> Your Bets: </h4>
                 <div class="list-group">
                     {% for bet in bets %}
-                    <a href="#" class="list-group-item">
+                    <a href="/bet/{{bet.id}}" class="list-group-item">
                         <div class="row">
                             <div class="col-md-2">
                                 <img class="profile-img-sm" src="{{bet.people.all.1.socialaccount_set.all.0.get_avatar_url}}" alt="Card image cap">

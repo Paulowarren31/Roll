@@ -6,13 +6,18 @@
 {% block title %}Welcome{% endblock %}
 {% block index %}
 <nav class="navbar navbar-dark navbar-full bg-inverse">
-
     <!-- Navbar content -->
-    <a class="navbar-brand" href="#">Roll</a>
-    <ul class="nav navbar-nav pull-right">
+    <a class="navbar-brand" href="/">Roll</a>
+
+    <ul class="nav navbar-nav ">
         {% if user and not user.is_anonymous %}
         <li class="nav-item">
-        <a class="nav-link " href="/logout/">Logout</a>
+        <a class="nav-link" href="/bets">Your Bets</a>
+        </li>
+    <ul>
+    <ul class="nav navbar-nav pull-right">
+        <li class="nav-item ">
+        <a class="nav-link" href="/logout/">Logout</a>
         </li>
         {% endif %}
     </ul>

@@ -13,12 +13,12 @@ class Bet(models.Model):
   price = models.DecimalField(max_digits=10, decimal_places=2)
   created_date = models.DateTimeField(
           default=timezone.now)
-  published_date = models.DateTimeField(
-          blank=True, null=True)
+  end_date= models.DateTimeField(
+          blank=True)
   def publish(self):
-    self.published_date = timezone.now()
+    self.published_date = timezone.now().strftime('%')
     self.save()
 
   def __str__(self):
-    return 'bet made by ' + self.author.username
+    return self.title
 

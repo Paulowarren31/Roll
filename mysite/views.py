@@ -19,8 +19,7 @@ def bets(request):
 
 def bet_detail(request, id_in):
   args = {}
-  args['bet'] = Bet.objects.filter(id=id_in)
-  print(Bet.objects.filter(id=id_in))
+  args['bet'] = Bet.objects.filter(id=id_in)[0]
   return render(request, 'bet.html', args)
     
 
