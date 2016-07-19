@@ -2,17 +2,40 @@
 {% load socialaccount %}
 {% providers_media_js %}
 
+{% load staticfiles %}
 {% block title %}Welcome{% endblock %}
 {% block index %}
-    <nav class="navbar navbar-dark navbar-full bg-inverse">
-        <!-- Navbar content -->
-        <a class="navbar-brand" href="#">Roll</a>
-    </nav>
-    {% if user and not user.is_anonymous %}
-        Hello {{user.get_full_name|default:user.username}}!
-    {% else %}
-        WAT
-<a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a>
-    {% endif %}
-    {% block content %}{% endblock %}
+<nav class="navbar navbar-dark navbar-full bg-inverse">
+
+    <!-- Navbar content -->
+    <a class="navbar-brand" href="#">Roll</a>
+    <ul class="nav navbar-nav pull-right">
+        {% if user and not user.is_anonymous %}
+        <li class="nav-item">
+        <a class="nav-link " href="/logout/">Logout</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% if user and not user.is_anonymous %}
+{% block content %}{% endblock %}
+{% else %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="card-block">
+                        <h4 class="card-title">Welcome </h4>
+                        <p class="card-text">Please login using Facebook:</p>
+                        <a class="btn btn-primary" href="{% provider_login_url "facebook" method="oauth2" %}">Login with Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endif %}
 {% endblock %}

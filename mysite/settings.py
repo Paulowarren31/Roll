@@ -60,7 +60,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/paulowar/batCave/mysite/templates'],
+        'DIRS': ['C:/Users/paulowar/batCave/Roll/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,4 +140,6 @@ STATICFILES_DIRS = (
 
 FACEBOOK_APP_ID='1123987734290387'
 FACEBOOK_API_SECRET='2d983a3dc94ea3bb11913a2249817475'
+
+LOGIN_REDIRECT_URL = '/bets'
 

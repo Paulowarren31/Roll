@@ -23,6 +23,8 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
-    url(r'^bets/', views.bets),
+    url(r'^bets$', views.bets),
+    url(r'^bet/(\d{1,5})', views.bet_detail),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'logout/', views.logout_view),
 ]

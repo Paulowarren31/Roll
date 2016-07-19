@@ -1,0 +1,28 @@
+.pull-right{
+    float: right;
+}
+
+.profile-img{
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.profile-img-sm{
+    margin: 4px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.profile-date-sm{
+    display: table-cell;
+    float: none;
+    vertical-align: bottom;
+    padding-left:7px;
+}
+
+.background{
+    background: url('/static/img/footer_lodyas.png');
+}
+
