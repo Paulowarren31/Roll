@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from bet.models import Bet
 from django.contrib.auth import logout
-from django.shortcuts import redirect
+from django.contrib.auth.models import User
+from friendship.models import Friend, Follow, FriendshipRequest
 
 def index(request):
   context = RequestContext(request, {'user': request.user})
@@ -26,5 +27,12 @@ def bet_detail(request, id_in):
 def logout_view(request):
   if request.user.is_authenticated():
     logout(request)
+  return redirect('/')
+
+def add_friend(request, id_in):
+  friend = User.objects.filter(id=id_in)[0]
+  Friend.objects.add_friend(request.user, friend).accept()
+  print(Friend.objects.friends(request.user))
+
   return redirect('/')
 
