@@ -34,5 +34,5 @@ def add_friend(request, id_in):
   Friend.objects.add_friend(request.user, friend).accept()
   print(Friend.objects.friends(request.user))
 
-  return redirect('/')
+  return redirect('/bets')
 
