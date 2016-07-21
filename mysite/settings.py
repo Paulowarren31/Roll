@@ -61,7 +61,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/paulowar/batCave/Roll/templates'],
+        'DIRS': ['/home/paulowar/Roll/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
