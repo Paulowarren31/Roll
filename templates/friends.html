@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block title %}Friends{% endblock %}
+{% load socialaccount %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3">
+            <div class="card">
+                <div class="card-header">
+                    Friends
+                </div>
+                <div class="list-group">
+                    {% for friend in friends %}
+
+                    <a href="#" class="list-group-item">
+                        <img class="profile-img-sm" src="{{bet.people.all.1.socialaccount_set.all.0.get_avatar_url}}" alt="Card image cap">
+
+                        {{friend.username}}
+
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

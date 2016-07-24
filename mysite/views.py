@@ -22,12 +22,22 @@ def bet_detail(request, id_in):
   args = {}
   args['bet'] = Bet.objects.filter(id=id_in)[0]
   return render(request, 'bet.html', args)
-    
 
 def logout_view(request):
   if request.user.is_authenticated():
     logout(request)
   return redirect('/')
+
+def friends(request):
+  if not request.user.is_authenticated():
+    #TODO:
+    #redirect to login page or error page or somethin
+    return redirect('/')
+
+  args = {}
+  args['friends'] = Friend.objects.friends(request.user)
+  print(request.user.socialaccount_set.all()[0].get_avatar_url())
+  return render(request, 'friends.html', args)
 
 def add_friend(request, id_in):
   friend = User.objects.filter(id=id_in)[0]
