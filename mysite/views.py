@@ -6,6 +6,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from friendship.models import Friend, Follow, FriendshipRequest
 
+from allauth.socialaccount.models import SocialToken
+
 def index(request):
   context = RequestContext(request, {'user': request.user})
   return render_to_response('index.html', context_instance=context)
@@ -36,7 +38,7 @@ def friends(request):
 
   args = {}
   args['friends'] = Friend.objects.friends(request.user)
-  print(request.user.socialaccount_set.all()[0].get_avatar_url())
+  args['friend_img_urls'] = request.user.socialaccount_set.all()
   return render(request, 'friends.html', args)
 
 def add_friend(request, id_in):
@@ -45,4 +47,15 @@ def add_friend(request, id_in):
   print(Friend.objects.friends(request.user))
 
   return redirect('/bets')
+
+def test(request):
+  print('asdasda')
+  social_user = request.user.socialaccount_set.all()
+  if social_user:
+    print(SocialToken.objects.filter(account__user=request.user, account__provider='facebook')[0])
+
+
+      
+
+  return redirect('/')
 

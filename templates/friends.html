@@ -11,11 +11,13 @@
                 </div>
                 <div class="list-group">
                     {% for friend in friends %}
+                        <a href="#" class="list-group-item">
 
-                    <a href="#" class="list-group-item">
-                        <img class="profile-img-sm" src="{{bet.people.all.1.socialaccount_set.all.0.get_avatar_url}}" alt="Card image cap">
+                            {% if friend.socialaccount_set.all.0 %}
+                            <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}" alt="Card image cap">
+                            {% endif %}
 
-                        {{friend.username}}
+                            {{friend.username}}
 
                     </a>
                     {% endfor %}

@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'logout/', views.logout_view),
     url(r'^add/(\d{1,5})', views.add_friend),
     url(r'^friends$', views.friends),
+    url(r'^test/', views.test),
 ]
