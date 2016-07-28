@@ -147,3 +147,16 @@ ACCOUNT_EMAIL_VERIFICATION = ("none")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+SOCIALACCOUNT_PROVIDERS = {'facebook':
+   {'METHOD': 'oauth2',
+    'SCOPE': ['email', 'public_profile', 'user_friends'],
+    'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+    'FIELDS': [
+        'id',
+        'email',
+        'first_name',
+        'last_name',
+        'friends'],
+    'VERSION': 'v2.4'
+   }
+}

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block title %}Friends{% endblock %}
+{% load socialaccount %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3">
+            <div class="card">
+                <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}" alt="card image cap">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

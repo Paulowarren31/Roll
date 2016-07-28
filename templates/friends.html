@@ -7,19 +7,20 @@
         <div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3">
             <div class="card">
                 <div class="card-header">
-                    Friends
+                    friends
+                    {{token}}
                 </div>
                 <div class="list-group">
                     {% for friend in friends %}
-                        <a href="#" class="list-group-item">
+                        {% if friend.socialaccount_set.all.0 %}
+                        <a href="/friend/{{ forloop.counter }}" class="list-group-item">
+                                <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}" alt="card image cap">
 
-                            {% if friend.socialaccount_set.all.0 %}
-                            <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}" alt="Card image cap">
-                            {% endif %}
+                                {{friend.first_name}}
+                                {{friend.last_name}}
 
-                            {{friend.username}}
-
-                    </a>
+                            </a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
