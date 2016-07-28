@@ -49,7 +49,7 @@ def add_friend(request, id_in):
   return redirect('/bets')
 
 def test(request):
-  print('asdasda')
+  print(request.user)
   social_user = request.user.socialaccount_set.all()
   if social_user:
     print(SocialToken.objects.filter(account__user=request.user, account__provider='facebook')[0])
