@@ -8,6 +8,8 @@ from friendship.models import Friend, Follow, FriendshipRequest
 
 from allauth.socialaccount.models import SocialToken
 
+from .forms import BetForm
+
 import requests
 
 def index(request):
@@ -62,7 +64,11 @@ def add_friend(request, id_in):
   return redirect('/friends')
 
 def test(request):
-  print(request.user)
-  social_user = request.user.socialaccount_set.all()
-  return redirect('/')
-
+  if request.method == 'POST':
+    form = BetForm(request.POST)
+    if form.is_valid():
+      print(form.cleaned_data)
+      return redirect('/')
+  else:
+    form = BetForm()
+  return render(request, 'test.html', {'form': form})

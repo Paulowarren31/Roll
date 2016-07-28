@@ -23,13 +23,20 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
+
+    #bets
     url(r'^bets/$', views.bets),
     url(r'^bet/(\d{1,5})', views.bet_detail),
+
+    #accounts
     url(r'^accounts/social/signup$', views.test),
     url(r'^accounts/', include('allauth.urls')),
     url(r'logout/', views.logout_view),
-    url(r'^add/(\d{1,5})', views.add_friend),
+
+    #friends
     url(r'^friends$', views.friends),
     url(r'^friend/(\d{1,5})', views.friend_detail),
+    url(r'^add/(\d{1,5})', views.add_friend),
+
     url(r'^test/', views.test),
 ]
