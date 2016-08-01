@@ -29,10 +29,8 @@
                                 <img class="profile-img-sm" src="{{bet.people.all.1.socialaccount_set.all.0.get_avatar_url}}" alt="Card image cap">
                             </div>
                             <div class="col-md-2">
-                                {% for user in  bet.people.all %}
-                                - {{user.username}}
+                                {{bet.people.all|length}}
                                 <br>
-                                {% endfor %}
                                 <small class="pull-right profile-date-sm">7/05/2016 </small>
                             </div>
                             <div class="col-md-7">

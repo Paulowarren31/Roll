@@ -17,9 +17,9 @@ def index(request):
   return render_to_response('index.html', context_instance=context)
 
 def bets(request):
-  args = {}
-  args['bets'] = Bet.objects.all()
   if request.user.is_authenticated():
+    args = {}
+    args['bets'] = Bet.objects.all()
     return render(request, 'bets.html', args)
   else:
     return redirect('/')
@@ -70,5 +70,5 @@ def test(request):
       print(form.cleaned_data)
       return redirect('/')
   else:
-    form = BetForm()
+    form = BetForm(request.user)
   return render(request, 'test.html', {'form': form})
