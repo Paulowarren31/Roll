@@ -50,24 +50,43 @@ def friends(request):
 def friend_detail(request, id_in):
   if not request.user.is_authenticated():
     #TODO:
-    #redirect to login page or error page or somethin
+    #redirect to 404
     return redirect('/')
   args = {}
-  args['friend'] = Friend.objects.friends(request.user)[int(id_in) - 1]
-  return render(request, 'friend.html', args)
+  friend_id = int(id_in)
+  friend = User.objects.get(id=int(id_in))
+
+  #if they are friends
+  if Friend.objects.are_friends(request.user, friend):
+    args['friend'] = friend
+    return render(request, 'friend.html', args)
+  else:
+    #not friends
+    return redirect('/')
 
 def add_friend(request, id_in):
-  friend = User.objects.filter(id=id_in)[0]
+  friend = User.objects.get(id=id_in)
   Friend.objects.add_friend(request.user, friend).accept()
-  print(Friend.objects.friends(request.user))
-
   return redirect('/friends')
 
 def test(request):
   if request.method == 'POST':
-    form = BetForm(request.POST)
+    form = BetForm(request.user, request.POST)
     if form.is_valid():
-      print(form.cleaned_data)
+
+      author = request.user
+      title = form.cleaned_data['title']
+      people_ids = form.cleaned_data['people']
+      gbp = form.cleaned_data['GBP']
+      end_date = form.cleaned_data['end_date']
+      text = 'blah lol lol'
+
+      newForm = Bet(author=author, title=title, text=text, price=gbp, end_date=end_date)
+      newForm.save()
+      for id in people_ids:
+        friend = User.objects.get(id=id)
+        newForm.people.add(friend)
+      newForm.save()
       return redirect('/')
   else:
     form = BetForm(request.user)

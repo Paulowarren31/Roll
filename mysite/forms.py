@@ -5,6 +5,11 @@ from friendship.models import Friend, Follow
 class BetForm(forms.Form):
   def __init__(self, user, *args, **kwargs):
     super(BetForm, self).__init__(*args, **kwargs)
-    self.fields['people'] = forms.ChoiceField(
-        choices=[(o, str(o)) for o in Friend.objects.friends(user)] 
+    self.fields['people'] = forms.MultipleChoiceField(
+        choices=[(o.id, str(o)) for o in Friend.objects.friends(user)] 
     )
+
+  title = forms.CharField(max_length=15)
+  GBP = forms.IntegerField()
+  end_date = forms.DateField()
+

@@ -2,28 +2,23 @@
 {% block title %}Friends{% endblock %}
 {% load socialaccount %}
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-sm-8 col-sm-offset-2 col-md-offset-3">
-            <div class="card">
-                <div class="card-header">
-                    friends
-                    {{token}}
-                </div>
-                <div class="list-group">
-                    {% for friend in friends %}
-                        {% if friend.socialaccount_set.all.0 %}
-                        <a href="/friend/{{ forloop.counter }}" class="list-group-item">
-                                <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}" alt="card image cap">
+<div class="container">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title"> friends</h4>
+        </div>
+        <div class="list-group list-group-flush">
+            {% for friend in friends %}
+            {% if friend.socialaccount_set.all.0 %}
+            <a href="/friend/{{ friend.id }}" class="list-group-item">
+                <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}" alt="card image cap">
 
-                                {{friend.first_name}}
-                                {{friend.last_name}}
+                <p>{{friend.first_name}}
+                {{friend.last_name}}</p>
 
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+            </a>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ class Bet(models.Model):
   people = models.ManyToManyField('auth.User', related_name='people_in_bet')
   title = models.CharField(max_length=200)
   text = models.TextField()
-  price = models.DecimalField(max_digits=10, decimal_places=2)
+  price = models.IntegerField()
   created_date = models.DateTimeField(
           default=timezone.now)
   end_date= models.DateTimeField(
