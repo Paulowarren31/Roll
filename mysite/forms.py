@@ -9,7 +9,8 @@ class BetForm(forms.Form):
         choices=[(o.id, str(o)) for o in Friend.objects.friends(user)] 
     )
 
-  title = forms.CharField(max_length=15)
+  title = forms.CharField(max_length=30)
+  description = forms.CharField()
   GBP = forms.IntegerField()
   end_date = forms.DateField()
 
