@@ -27,8 +27,15 @@
 .container{
     width: 80%
 }
+.help-block{
+    color: red;
+}
 
 .background{
     background: url('/static/img/footer_lodyas.png');
+}
+
+.wrap{
+    word-wrap: break-word;
 }
 

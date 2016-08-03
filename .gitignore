@@ -1,7 +1,0 @@
-myvenv/
-*.pyc
-*.pyo
-.installed.cfg
-bin
-lib
-lib64

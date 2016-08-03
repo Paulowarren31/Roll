@@ -70,7 +70,7 @@ def add_bet_form(request):
       people_ids = form.cleaned_data['people']
       gbp = form.cleaned_data['GBP']
       end_date = form.cleaned_data['end_date']
-      text = 'blah lol lol'
+      text = form.cleaned_data['description']
 
       newForm = Bet(author=author, title=title, text=text, price=gbp, end_date=end_date)
       newForm.save()
