@@ -24,6 +24,9 @@
 
     color:#a94442;
 }
+.container{
+    width: 80%
+}
 
 .background{
     background: url('/static/img/footer_lodyas.png');

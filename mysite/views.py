@@ -18,9 +18,13 @@ def index(request):
 
 def bets(request):
   if request.user.is_authenticated():
-    args = {}
-    args['bets'] = Bet.objects.all()
-    return render(request, 'bets.html', args)
+    context = {}
+    bets = Bet.objects.all()
+    context['bets'] = []
+    for bet in bets:
+      if request.user in bet.people.all():
+        context['bets'].append(bet)
+    return render(request, 'bets.html', context)
   else:
     return redirect('/')
 
@@ -33,19 +37,6 @@ def logout_view(request):
   if request.user.is_authenticated():
     logout(request)
   return redirect('/')
-
-def friends(request):
-  if not request.user.is_authenticated():
-    #TODO:
-    #redirect to login page or error page or somethin
-    return redirect('/')
-
-  args = {}
-  args['friends'] = Friend.objects.friends(request.user)
-  args['friend_img_urls'] = request.user.socialaccount_set.all()
-
-  print(request.user.socialaccount_set.all()[0].extra_data['friends']['data'])
-  return render(request, 'friends.html', args)
 
 def friend_detail(request, id_in):
   if not request.user.is_authenticated():
@@ -69,7 +60,7 @@ def add_friend(request, id_in):
   Friend.objects.add_friend(request.user, friend).accept()
   return redirect('/friends')
 
-def test(request):
+def add_bet_form(request):
   if request.method == 'POST':
     form = BetForm(request.user, request.POST)
     if form.is_valid():
@@ -83,11 +74,14 @@ def test(request):
 
       newForm = Bet(author=author, title=title, text=text, price=gbp, end_date=end_date)
       newForm.save()
+
       for id in people_ids:
         friend = User.objects.get(id=id)
         newForm.people.add(friend)
+      newForm.people.add(request.user)
       newForm.save()
-      return redirect('/')
+
+      return redirect('/bets')
   else:
     form = BetForm(request.user)
-  return render(request, 'test.html', {'form': form})
+  return render(request, 'add_bet.html', {'form': form})
