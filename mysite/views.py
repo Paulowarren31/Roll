@@ -5,8 +5,8 @@ from bet.models import Bet
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from friendship.models import Friend, Follow, FriendshipRequest
-
 from allauth.socialaccount.models import SocialToken
+import json
 
 from .forms import BetForm
 
@@ -84,4 +84,4 @@ def add_bet_form(request):
       return redirect('/bets')
   else:
     form = BetForm(request.user)
-  return render(request, 'add_bet.html', {'form': form})
+  return render(request, 'add_bet.html', {'form': form}) 

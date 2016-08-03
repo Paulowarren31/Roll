@@ -2,21 +2,54 @@
 {% block title %}Bets{% endblock %}
 {% load socialaccount %}
 {% load bootstrap %}
+<script type="text/javascript">
+    data_django = {{data}}
+    console.log(data_django)
+</script>
 {% block content %}
-            <div class="container">
-                <div class="card">
+<div class="container">
+    <div class="card">
 
-                <div class="card-block">
-                <form action="/bets/add" method="post">
-                    <legend>Add A Bet</legend>
-                    {% csrf_token %}
-                    {{ form|bootstrap }}
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-            </div>
-            </div>
+        <div class="card-block">
+            <form action="/bets/add" method="post">
+                <legend>Add A Bet</legend>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div class="fieldWrapper">
+                    <label for="{{ form.title.id_for_label }}"></label>
+                    {{ form.title|bootstrap }}
+                </div>
+
+                <div class="fieldwrapper">
+                    <label for="{{ form.description.id_for_label }}"></label>
+                    {{ form.description|bootstrap }}
+                </div>
+
+                <div class="fieldwrapper">
+                    <label for="{{ form.GBP.id_for_label }}"></label>
+                    {{ form.GBP|bootstrap }}
+                </div>
+
+                <div class="fieldwrapper">
+                    <label for="{{ form.end_date.id_for_label }}"></label>
+                    {{ form.end_date|bootstrap }}
+                </div>
+
+                <div class="fieldwrapper">
+
+                    <label for="{{ form.people.id_for_label }}"></label>
+                    <input type="text" class="form-control" placeholder="Username"> 
+                    {{ form.people|bootstrap }}
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
