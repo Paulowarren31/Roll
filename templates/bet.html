@@ -4,39 +4,39 @@
 {% block content %}
 
 
-    <div class="jumbotron">
-        <h1 class="display-3">{{bet.title}}</h1>
-        <div class="lead">
-            <div class="row">
+<div class="jumbotron">
+    <h1 class="display-3">{{bet.title}}</h1>
+    <div class="lead">
+        <div class="row">
 
-                <div class="col-sm-8">
-                    {% for person in bet.people.all %}
-                    <img class="profile-img-sm" src="{{person.socialaccount_set.all.0.get_avatar_url}}">
-                    {% endfor %}
-                </div>
-
-                <div class="col-sm-4">
-                    <h2><span style="margin-top: 12%;" class="label label-default pull-right">{{bet.price}}</span></h2>
-                </div>
-
+            <div class="col-sm-8">
+                {% for person in bet.people.all %}
+                <img class="profile-img-sm" src="{{person.socialaccount_set.all.0.get_avatar_url}}">
+                {% endfor %}
             </div>
+
+            <div class="col-sm-4">
+                <h2><span style="margin-top: 12%;" class="label label-default pull-right">{{bet.price}}</span></h2>
+            </div>
+
         </div>
-        <hr class="m-y-2">
-        <div class="containerfluid">
-            <div class="row">
-                <div class="col-sm-5">
-                    <h4 class="alert-color">{{bet.end_date.date}}<h4>
-                            <p>{{bet.text}}</p>
-                        </div>
-                        <div class="col-sm-7">
-                            <h4>Chat Goes Here</h4>
-                        </div>
-
-                        <p class="lead">
-                        </p>
-                    </div>
-                </div>
+    </div>
+    <hr class="m-y-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 wrap">
+                <h4 class="alert-color">{{bet.end_date.date}}</h4>
+                {{ bet.text}}
             </div>
+            <div class="col-sm-7">
+                <h4>Chat Goes Here</h4>
+            </div>
+
+            <p class="lead">
+            </p>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 

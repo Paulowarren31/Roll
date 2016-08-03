@@ -10,7 +10,7 @@ class BetForm(forms.Form):
     )
 
   title = forms.CharField(max_length=30)
-  description = forms.CharField()
+  description = forms.CharField(max_length=200)
   GBP = forms.IntegerField()
   end_date = forms.DateField()
 
