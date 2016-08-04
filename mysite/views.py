@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response
-from bet.models import Bet
+from bet.models import Bet, BetComment
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from friendship.models import Friend, Follow, FriendshipRequest
-
 from allauth.socialaccount.models import SocialToken
+import json
 
-from .forms import BetForm
+from .forms import BetForm, CommentForm
 
 import requests
 
@@ -29,9 +29,26 @@ def bets(request):
     return redirect('/')
 
 def bet_detail(request, id_in):
-  args = {}
-  args['bet'] = Bet.objects.filter(id=id_in)[0]
-  return render(request, 'bet.html', args)
+
+  bet = Bet.objects.get(pk=id_in)
+
+  if request.method == 'POST':
+    #adding a comment...
+    form = CommentForm(request.POST)
+    if form.is_valid():
+      comment = form.cleaned_data['comment']
+      new_comment = BetComment(comment=comment, author=request.user, bet=bet)
+      new_comment.save()
+
+      return redirect('/bet/'+id_in)
+  else:
+    context = {}
+
+    context['bet'] = bet
+    context['comments'] = BetComment.objects.filter(bet=bet)
+    print(context['comments'])
+    context['form'] = CommentForm()
+    return render(request, 'bet.html', context)
 
 def logout_view(request):
   if request.user.is_authenticated():
@@ -45,7 +62,7 @@ def friend_detail(request, id_in):
     return redirect('/')
   args = {}
   friend_id = int(id_in)
-  friend = User.objects.get(id=int(id_in))
+  friend = User.objects.get(pk=int(id_in))
 
   #if they are friends
   if Friend.objects.are_friends(request.user, friend):
@@ -56,7 +73,7 @@ def friend_detail(request, id_in):
     return redirect('/')
 
 def add_friend(request, id_in):
-  friend = User.objects.get(id=id_in)
+  friend = User.objects.get(pk=id_in)
   Friend.objects.add_friend(request.user, friend).accept()
   return redirect('/friends')
 
@@ -76,7 +93,7 @@ def add_bet_form(request):
       newForm.save()
 
       for id in people_ids:
-        friend = User.objects.get(id=id)
+        friend = User.objects.get(pk=id)
         newForm.people.add(friend)
       newForm.people.add(request.user)
       newForm.save()
@@ -84,4 +101,4 @@ def add_bet_form(request):
       return redirect('/bets')
   else:
     form = BetForm(request.user)
-  return render(request, 'add_bet.html', {'form': form})
+  return render(request, 'add_bet.html', {'form': form}) 

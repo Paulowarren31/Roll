@@ -14,3 +14,5 @@ class BetForm(forms.Form):
   GBP = forms.IntegerField()
   end_date = forms.DateField()
 
+class CommentForm(forms.Form):
+  comment = forms.CharField()

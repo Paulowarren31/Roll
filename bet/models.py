@@ -11,13 +11,23 @@ class Bet(models.Model):
   title = models.CharField(max_length=200)
   text = models.TextField()
   price = models.IntegerField()
-  created_date = models.DateTimeField(
-          default=timezone.now)
-  end_date= models.DateTimeField(
-          blank=True)
+  created_date = models.DateTimeField(default=timezone.now().strftime('%x'))
+  end_date = models.DateTimeField(blank=True)
   def publish(self):
-    self.published_date = timezone.now().strftime('%')
     self.save()
 
   def __str__(self):
     return self.title
+
+
+class BetComment(models.Model):
+  author = models.ForeignKey('auth.User', related_name='author')
+  comment = models.CharField(max_length=200)
+  date = models.DateTimeField(default=timezone.now)
+  bet = models.ForeignKey(Bet, on_delete=models.CASCADE, default=2)
+
+  def publish(self):
+    self.save()
+  
+  def __str__(self):
+    return self.comment
