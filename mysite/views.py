@@ -50,7 +50,6 @@ def bet_detail(request, id_in):
 
     context['bet'] = bet
     context['comments'] = BetComment.objects.filter(bet=bet)
-    print(context['comments'])
     context['form'] = CommentForm()
     return render(request, 'bet.html', context)
 

@@ -2,25 +2,22 @@
 {% block title %}Bets{% endblock %}
 {% load socialaccount %}
 {% block content %}
-<div class="jumbotron p-t-1"> 
+<div class="jumbotron p-t-2">
     {% if user and not user.is_anonymous %}
-    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        &#9776;
-    </button>
-
     <div class="collapse m-b-1" id="exCollapsingNavbar">
     </div>
     <div class="row">
-        <div class="col-md-9 col-lg-8">
+        <div class="col-md-4 col-lg-3">
+            <img class="card-img-top profile-img " src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Card image cap">
+        </div>
+
+        <div class="col-md-8 col-lg-8">
             <div class="card-block">
                 <h3 class="card-title">Hello {{user.get_full_name|default:user.username}}!</h3>
 
                 <p class="card-text">Welcome to Roll! You can bet your friends.</p>
                 <a class="card-text" href="/bets/add">Create a bet</a>
             </div>
-        </div>
-        <div class="col-md-3 col-lg-4">
-            <img class="card-img-top profile-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Card image cap">
         </div>
 
     </div>
@@ -29,19 +26,19 @@
     <hr>
     <div class="list-group">
         {% for bet in bets %}
-        <a href="/bet/{{bet.id}}" class="list-group-item">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row list-group-item">
+                <div class="col-md-6 col-sm-4">
 
-                    <h3>{{bet.title}}</h3>
-                    <small>{{ bet.end_date|timeuntil}}</small>
+                    <a class="bet-link" href="/bet/{{bet.id}}" >
+                        <h3>{{bet.title}}</h3>
+                    </a>
+                    <small class="color-brown">{{ bet.end_date|timeuntil}}</small>
 
                 </div>
-                <div class="col-md-1 pull-right">
+                <div class="col-md-1 col-sm-2 pull-right">
                     <h4><span class="tag tag-primary pull-right">{{ bet.price }}</span></h4>
                 </div>
             </div>
-        </a>
         {% endfor %}
     </div>
     {% endif %}

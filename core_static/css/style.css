@@ -1,9 +1,26 @@
+body {
+
+    font-family: "Open Sans";
+}
+.tag-primary{
+    background-color: #84632c;
+}
+.bet-link{
+    color: #373a3c;
+}
+.bet-link:hover{
+
+    text-decoration: none;
+    color: #373a3c;
+}
+
 .pull-right{
+
     float: right;
 }
 
 .profile-img{
-    border-radius: 50%;
+    border-radius: 10%;
     width: 140px;
     height: 140px;
 }
@@ -33,7 +50,7 @@
     width: 50px;
     height: 50px;
 }
-.comment-time{
+.color-brown{
     color: #94743d;
 }
 

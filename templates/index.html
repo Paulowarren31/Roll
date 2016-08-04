@@ -30,25 +30,43 @@
     <div class="col-md-9">
         {% block content %}{% endblock %}
     </div>
-    <div class="col-md-2 pull-right">
-        <div class="jumbotron">
-            <h2>Friends</h2>
-            <hr>
-            {% current_friends as friends %}
-            {% if friends %}
-            {% for friend in friends %}
+    <div class="col-md-3 pull-right">
+        <div class="card">
+            <div class="card-block">
+                <h2 class="card-title">Friends</h2>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% current_friends as friends %}
+                {% if friends %}
+                {% for friend in friends %}
 
-            <a href="/friend/{{friend.id}}">{{friend.first_name}}
-                {{friend.last_name}}</a>
-            <br>
+                    <li class="list-group-item">
+
+                        <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}">
+
+                        <a href="/friend/{{friend.pk}}">
+                        {{friend.first_name}} {{friend.last_name}}
+                        </a>
+
+                    </li>
+
+                <br>
 
 
-            {% endfor %}
-            {% endif %}
+                {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="card-block">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
 
         </div>
     </div>
 </div>
+<nav class="navbar navbar-fixed-bottom navbar-dark bg-inverse">
+    <h3 class="navbar-brand" href="#"> bottom</h3>
+</nav>
 {% else %}
 <div class="jumbotron">
     <div class="row">
