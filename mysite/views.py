@@ -31,9 +31,12 @@ def bets(request):
 def bet_detail(request, id_in):
 
   bet = Bet.objects.get(pk=id_in)
+  print(bet.people)
 
   if request.method == 'POST':
     #adding a comment...
+    if request.user not in bet.people:
+      return redirect('/')
     form = CommentForm(request.POST)
     if form.is_valid():
       comment = form.cleaned_data['comment']
@@ -75,7 +78,7 @@ def friend_detail(request, id_in):
 def add_friend(request, id_in):
   friend = User.objects.get(pk=id_in)
   Friend.objects.add_friend(request.user, friend).accept()
-  return redirect('/friends')
+  return redirect('/bets')
 
 def add_bet_form(request):
   if request.method == 'POST':
