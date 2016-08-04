@@ -27,8 +27,11 @@ urlpatterns = [
     #bets
     url(r'^bets/$', views.bets),
     url(r'^bet/(\d{1,5})', views.bet_detail),
-    
     url(r'^bets/add$', views.add_bet_form),
+
+    #comments
+    url(r'^comments/remove/(\d{1,5})/(\d{1,5})', views.remove_comment),
+
 
     #accounts
     url(r'^accounts/', include('allauth.urls')),

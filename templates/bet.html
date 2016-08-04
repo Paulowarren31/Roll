@@ -25,34 +25,55 @@
     <hr class="m-y-2">
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-sm-4 wrap">
                 <h4 class="alert-color">{{bet.end_date.date}}</h4>
                 {{ bet.text}}
             </div>
+
+            <!-- COMMENTS SECTION -->
             <div class="col-sm-7">
-                <h4>Comments: </h4>
-
+                <h4>Comments</h4>
                 {% for comment in comments %}
-                <div class="media">
-                    <a class="media-left" href="#">
-                        <img class="media-object comment-pic" src="{{comment.author.socialaccount_set.all.0.get_avatar_url}}"alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body">
-                        <h5 class="media-heading">{{comment.author.first_name}} {{comment.author.last_name}}</h5>
-                        {{ comment }}
-                    </div>
-                    <div class="media-right">
-                        {{ comment.date|date:"m/d/y" }}
-                        
+                <div class="card card-block">
+                    <div class="collapse m-b-1" id="com-{{forloop.counter}}">
+                        <div class="btn-group btn-group-sm " role="group" aria-label="...">
+                            <a><button type="button" class="btn btn-sm btn-primary">Edit</button></a>
+                            <a href="/comments/remove/{{bet.pk}}/{{comment.pk}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+                        </div>
                     </div>
 
-                    <div class="media-right">
-                        {{ comment.date|date:"g:i" }}
-                    </div>
+                    <div class="media ">
+                        <a class="media-left" href="#">
+                            <img class="media-object comment-pic" src="{{comment.author.socialaccount_set.all.0.get_avatar_url}}"alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading">
+                                {{comment.author.first_name}} {{comment.author.last_name}}
 
+                                <small class="comment-time"> {{ comment.date|date:"g:i a" }}</small>
+                            </h5>
+
+                            <div class="text-justify">{{ comment }}</div>
+                        </div>
+
+
+                        <div class="media-right">
+                            {{ comment.date|date:"m/d/y" }}
+
+                            <br>
+                            <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#com-{{forloop.counter}}" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                                &#9776;
+                            </button>
+
+
+                        </div>
+
+                    </div>
                 </div>
+
                 {% endfor %}
-                
+
                 <br>
                 <form action="/bet/{{bet.pk}}" method="post">
                     {% csrf_token %}
@@ -60,6 +81,7 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
+            <!-- COMMENTS SECTION -->
 
         </div>
     </div>

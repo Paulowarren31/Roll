@@ -11,7 +11,7 @@ class Bet(models.Model):
   title = models.CharField(max_length=200)
   text = models.TextField()
   price = models.IntegerField()
-  created_date = models.DateTimeField(default=timezone.now())
+  created_date = models.DateTimeField(default=timezone.now)
   end_date = models.DateTimeField(blank=True)
   def publish(self):
     self.save()

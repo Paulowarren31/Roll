@@ -3,10 +3,9 @@
 }
 
 .profile-img{
-    margin: 20px;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
 }
 .profile-img-sm{
     margin: 4px;
@@ -33,6 +32,9 @@
 .comment-pic{
     width: 50px;
     height: 50px;
+}
+.comment-time{
+    color: #94743d;
 }
 
 .background{

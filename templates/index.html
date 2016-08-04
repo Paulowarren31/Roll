@@ -50,15 +50,13 @@
     </div>
 </div>
 {% else %}
-<div class="container">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="card-block">
-                    <h4 class="card-title">Welcome </h4>
-                    <p class="card-text">Please login using Facebook:</p>
-                    <a class="btn btn-primary" href="{% provider_login_url "facebook" method="oauth2" next="/bets/" %}">Login with Facebook</a>
-                </div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="card-block">
+                <h4 class="card-title">Welcome </h4>
+                <p class="card-text">Please login using Facebook:</p>
+                <a class="btn btn-primary" href="{% provider_login_url "facebook" method="oauth2" next="/bets/" %}">Login with Facebook</a>
             </div>
         </div>
     </div>

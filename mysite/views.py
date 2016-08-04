@@ -36,6 +36,7 @@ def bet_detail(request, id_in):
   if request.method == 'POST':
     #adding a comment...
     if request.user not in bet.people.all():
+      #or 404?
       return redirect('/')
     form = CommentForm(request.POST)
     if form.is_valid():
@@ -52,6 +53,23 @@ def bet_detail(request, id_in):
     print(context['comments'])
     context['form'] = CommentForm()
     return render(request, 'bet.html', context)
+
+def remove_comment(request, bet_id_in, comment_id_in):
+
+  bet = Bet.objects.get(pk=bet_id_in)
+  #if they are not in the bet
+  if request.user not in bet.people.all():
+    #or 404?
+    return redirect('/')
+
+  comment = BetComment.objects.get(pk=comment_id_in)
+  #if they are not the author
+  if request.user != comment.author:
+    return redirect('/')
+  comment.delete()
+
+  return redirect('/bet/'+bet_id_in)
+
 
 def logout_view(request):
   if request.user.is_authenticated():

@@ -7,23 +7,27 @@
     console.log(data_django)
 </script>
 {% block content %}
-<div class="container">
-    <div class="card">
 
-        <div class="card-block">
+        <div class="jumbotron">
             <form action="/bets/add" method="post">
                 <legend>Add A Bet</legend>
                 {% csrf_token %}
                 {{ form.non_field_errors }}
 
-                <div class="fieldWrapper">
-                    <label for="{{ form.title.id_for_label }}"></label>
-                    {{ form.title|bootstrap }}
-                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            <label for="{{ form.title.id_for_label }}"></label>
+                            {{ form.title|bootstrap }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
 
-                <div class="fieldwrapper">
-                    <label for="{{ form.description.id_for_label }}"></label>
-                    {{ form.description|bootstrap }}
+                        <div class="fieldwrapper">
+                            <label for="{{ form.description.id_for_label }}"></label>
+                            {{ form.description|bootstrap }}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="fieldwrapper">
@@ -49,7 +53,5 @@
                 </div>
             </form>
         </div>
-    </div>
-</div>
 {% endblock %}
 
