@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% block title %}Bets{% endblock %}
 {% load socialaccount %}
+{% load bootstrap %}
 {% block content %}
 
 
@@ -29,15 +30,39 @@
                 {{ bet.text}}
             </div>
             <div class="col-sm-7">
-                <h4>Chat Goes Here</h4>
+                <h4>Comments: </h4>
+
+                {% for comment in comments %}
+                <div class="media">
+                    <a class="media-left" href="#">
+                        <img class="media-object comment-pic" src="{{comment.author.socialaccount_set.all.0.get_avatar_url}}"alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{comment.author.first_name}} {{comment.author.last_name}}</h5>
+                        {{ comment }}
+                    </div>
+                    <div class="media-right">
+                        {{ comment.date|date:"m/d/y" }}
+                        
+                    </div>
+
+                    <div class="media-right">
+                        {{ comment.date|date:"g:i" }}
+                    </div>
+
+                </div>
+                {% endfor %}
+                
+                <br>
+                <form action="/bet/{{bet.pk}}" method="post">
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
 
-            <p class="lead">
-            </p>
         </div>
     </div>
 </div>
-        </div>
-    </div>
 
 {% endblock %}
