@@ -35,7 +35,7 @@ def bet_detail(request, id_in):
 
   if request.method == 'POST':
     #adding a comment...
-    if request.user not in bet.people:
+    if request.user not in bet.people.all():
       return redirect('/')
     form = CommentForm(request.POST)
     if form.is_valid():
