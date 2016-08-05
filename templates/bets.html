@@ -4,8 +4,6 @@
 {% block content %}
 <div class="jumbotron p-t-2">
     {% if user and not user.is_anonymous %}
-    <div class="collapse m-b-1" id="exCollapsingNavbar">
-    </div>
     <div class="row">
         <div class="col-md-4 col-lg-3">
             <img class="card-img-top profile-img " src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="Card image cap">
@@ -15,7 +13,7 @@
             <div class="card-block">
                 <h3 class="card-title">Hello {{user.get_full_name|default:user.username}}!</h3>
 
-                <p class="card-text">Welcome to Roll! You can bet your friends.</p>
+                <p class="card-text">Here you can see all of your current bets.</p>
                 <a class="card-text" href="/bets/add">Create a bet</a>
             </div>
         </div>

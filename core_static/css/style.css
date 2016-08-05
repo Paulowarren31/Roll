@@ -53,6 +53,9 @@ body {
 .color-brown{
     color: #94743d;
 }
+.color-grey{
+    color: #eceeef;
+}
 
 .background{
     background: url('/static/img/footer_lodyas.png');

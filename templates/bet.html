@@ -55,7 +55,7 @@
                             {{ comment.date|date:"m/d/y" }}
 
                             <br>
-                            
+
                             <!-- if the user is the comment author, they can delete/edit it-->
                             {% if user == comment.author %}
                             <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#com-{{forloop.counter}}" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,9 @@
                     <div class="collapse m-t-1 pull-right" id="com-{{forloop.counter}}">
                         <div class="btn-group btn-group-sm " role="group" aria-label="...">
                             <a><button type="button" class="btn btn-sm btn-primary">Edit</button></a>
-                            <a href="/comments/remove/{{bet.pk}}/{{comment.pk}}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+                            <a class="btn btn-danger" href="/comments/remove/{{bet.pk}}/{{comment.pk}}" aria-label="Delete">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
 

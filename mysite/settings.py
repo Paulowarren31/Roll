@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'bet',
+    'points',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'friendship',
     'bootstrapform',
     'mysite',
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -71,7 +73,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.request',
             ],
         },
     },

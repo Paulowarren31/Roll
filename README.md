@@ -1,5 +1,12 @@
 # Roll
 
+#WAT DO
+
+make sure to:
+
+pip install django-allauth
+pip install django-friendship
+
 What we got so far:
 
 1. you can login w FB and look at all the sick bets at /bets/

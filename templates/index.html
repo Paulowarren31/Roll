@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load socialaccount %}
 {% load friend_list %}
-{% providers_media_js %}
 
 {% load staticfiles %}
 {% block title %}Welcome{% endblock %}
@@ -40,15 +39,15 @@
                 {% if friends %}
                 {% for friend in friends %}
 
-                    <li class="list-group-item">
+                <li class="list-group-item">
 
-                        <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}">
+                <img class="profile-img-sm" src="{{friend.socialaccount_set.all.0.get_avatar_url}}">
 
-                        <a href="/friend/{{friend.pk}}">
-                        {{friend.first_name}} {{friend.last_name}}
-                        </a>
+                <a href="/friend/{{friend.pk}}">
+                    {{friend.first_name}} {{friend.last_name}}
+                </a>
 
-                    </li>
+                </li>
 
                 <br>
 
@@ -65,7 +64,18 @@
     </div>
 </div>
 <nav class="navbar navbar-fixed-bottom navbar-dark bg-inverse">
-    <h3 class="navbar-brand" href="#"> bottom</h3>
+    <button class="navbar-toggler color-grey" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        &#9776;
+    </button>
+
+
+    <div class="collapse" id="exCollapsingNavbar">
+        <div class="bg-inverse p-a-1" style="color: white;">
+            <i class="fa fa-camera-retro fa-2x"></i> 
+            You have {{ user.pointcount.points }} Good Boy Points! Hooray!!!
+
+        </div>
+    </div>
 </nav>
 {% else %}
 <div class="jumbotron">

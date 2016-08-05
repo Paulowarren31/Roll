@@ -13,8 +13,7 @@ from .forms import BetForm, CommentForm
 import requests
 
 def index(request):
-  context = RequestContext(request, {'user': request.user})
-  return render_to_response('index.html', context_instance=context)
+  return render(request, 'home.html')
 
 def bets(request):
   if request.user.is_authenticated():
@@ -92,7 +91,10 @@ def friend_detail(request, id_in):
     #not friends
     return redirect('/')
 
-def add_friend(request, id_in):
+
+### this will be moved to somewhere where this auto runs for every ###
+### person when they login or something                            ###
+def add_friend( request, id_in):
   friend = User.objects.get(pk=id_in)
   Friend.objects.add_friend(request.user, friend).accept()
   return redirect('/bets')
