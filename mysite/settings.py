@@ -148,7 +148,7 @@ LOGIN_REDIRECT_URL = '/bets/'
 EMAIL_CONFIRMATION_SIGNUP = False
 ACCOUNT_EMAIL_VERIFICATION = ("none")
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
 
 SOCIALACCOUNT_PROVIDERS = {'facebook':
    {'METHOD': 'oauth2',
@@ -163,3 +163,8 @@ SOCIALACCOUNT_PROVIDERS = {'facebook':
     'VERSION': 'v2.4'
    }
 }
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'Paulowarren31'
+EMAIL_HOST_PASSWORD = 'Pinzon123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

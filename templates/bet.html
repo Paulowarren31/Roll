@@ -41,11 +41,11 @@
                             <img class="media-object comment-pic" src="{{comment.author.socialaccount_set.all.0.get_avatar_url}}"alt="Generic placeholder image">
                         </a>
                         <div class="media-body">
-                            <h5 class="media-heading">
+                            <h6 class="media-heading">
                                 {{comment.author.first_name}} {{comment.author.last_name}}
-
                                 <small class="color-brown"> {{ comment.date|date:"g:i a" }}</small>
-                            </h5>
+
+                            </h6>
 
                             <div class="text-justify">{{ comment }}</div>
                         </div>
